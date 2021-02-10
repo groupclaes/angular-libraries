@@ -1,6 +1,6 @@
 {
   "name": "@groupclaes/angular-pcm",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "author": "Jamie Vangeysel",
   "private": false,
   "peerDependencies": {
