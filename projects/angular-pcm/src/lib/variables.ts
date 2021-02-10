@@ -1,0 +1,1 @@
+export const api_url = 'https://pcm.groupclaes.be/v3/content'

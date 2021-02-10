@@ -1,0 +1,13 @@
+{
+  "name": "@groupclaes/angular-pcm",
+  "version": "0.0.1",
+  "author": "Jamie Vangeysel",
+  "private": false,
+  "peerDependencies": {
+    "@angular/common": "^11.0.9",
+    "@angular/core": "^11.0.9"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  }
+}

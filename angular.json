@@ -1,0 +1,50 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "angular-pcm": {
+      "projectType": "library",
+      "root": "projects/angular-pcm",
+      "sourceRoot": "projects/angular-pcm/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/angular-pcm/tsconfig.lib.json",
+            "project": "projects/angular-pcm/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/angular-pcm/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/angular-pcm/src/test.ts",
+            "tsConfig": "projects/angular-pcm/tsconfig.spec.json",
+            "karmaConfig": "projects/angular-pcm/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/angular-pcm/tsconfig.lib.json",
+              "projects/angular-pcm/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "cli": {
+    "analytics": "beb93c24-fe6d-41af-b440-63f4c61ca180"
+  },
+  "defaultProject": "angular-pcm"
+}
