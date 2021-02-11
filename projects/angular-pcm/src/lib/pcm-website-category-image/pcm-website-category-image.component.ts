@@ -10,6 +10,7 @@ export class PcmWebsiteCategoryImageComponent implements OnInit {
   @Input() company: string = 'dis'
   @Input() categories: any[] = []
   @Input() newPage: boolean = false
+  @Input() link: boolean = true
   @Input() culture: string = 'nl'
 
   constructor() { }

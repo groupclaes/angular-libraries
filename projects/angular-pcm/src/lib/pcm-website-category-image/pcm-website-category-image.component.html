@@ -1,5 +1,15 @@
-<div class="categories-list">
-  <a *ngFor="let category of categories" [href]="category.href" [target]="(newPage) ? '_blank' : ''" class="container">
+<div class="categories-list" *ngIf="newPage">
+  <a *ngFor="let category of categories" [href]="category.href" target="_blank" class="container">
+    <div class="content" [style]="category.css">
+      <div [ngClass]="labelClass">
+        <h4 [innerText]="category.name[culture]"></h4>
+      </div>
+    </div>
+  </a>
+</div>
+<div class="categories-list" *ngIf="link">
+  <a *ngFor="let category of categories" [routerLink]="['/products', category.name[culture]]"
+    [queryParams]="{id: category.id}" class="container">
     <div class="content" [style]="category.css">
       <div [ngClass]="labelClass">
         <h4 [innerText]="category.name[culture]"></h4>
