@@ -36,20 +36,20 @@ export class PcmWebsiteBannerComponent implements OnInit, OnChanges {
     if (this.company) {
       if (this.element.nativeElement.offsetWidth < 760 && (this.currentSize !== 'small' || force)) {
         this.css = this.sanitizer.bypassSecurityTrustStyle(
-          `background-image:url('${api_url}/${this.company}/website/banner-image/100/${this.culture}?size=small');`
+          `background-image:url('${api_url}/content/${this.company}/website/banner-image/100/${this.culture}?size=small');`
         );
         this.currentSize = 'small';
         this.ref.markForCheck();
         // tslint:disable-next-line: max-line-length
       } else if (this.element.nativeElement.offsetWidth >= 760 && this.element.nativeElement.offsetWidth < 1140 && (this.currentSize !== 'medium' || force)) {
         this.css = this.sanitizer.bypassSecurityTrustStyle(
-          `background-image:url('${api_url}/${this.company}/website/banner-image/100/${this.culture}?size=medium');`
+          `background-image:url('${api_url}/content/${this.company}/website/banner-image/100/${this.culture}?size=medium');`
         );
         this.currentSize = 'medium';
         this.ref.markForCheck();
       } else if (this.element.nativeElement.offsetWidth >= 1140 && (this.currentSize !== 'large' || force)) {
         this.css = this.sanitizer.bypassSecurityTrustStyle(
-          `background-image:url('${api_url}/${this.company}/website/banner-image/100/${this.culture}?size=large');`
+          `background-image:url('${api_url}/content/${this.company}/website/banner-image/100/${this.culture}?size=large');`
         );
         this.currentSize = 'large';
         this.ref.markForCheck();

@@ -21,6 +21,6 @@ export class PcmWebsiteLogoComponent implements OnInit {
   }
 
   get url(): SafeUrl {
-    return this.sanitizer.bypassSecurityTrustUrl(`${api_url}/${this.company}/website/logo/${this.id}`)
+    return this.sanitizer.bypassSecurityTrustUrl(`${api_url}/content/${this.company}/website/logo/${this.id}`)
   }
 }

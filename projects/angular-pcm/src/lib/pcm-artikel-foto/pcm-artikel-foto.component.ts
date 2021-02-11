@@ -26,7 +26,7 @@ export class PcmArtikelFotoComponent implements OnInit {
 
   get url(): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(
-      `${api_url}/${this.company}/artikel/foto/${this.itemnum}?thumb=${this.thumbnail}`
+      `${api_url}/miniature/${this.company}/artikel/foto/${this.itemnum}?thumb=${this.thumbnail}`
     );
   }
 }
