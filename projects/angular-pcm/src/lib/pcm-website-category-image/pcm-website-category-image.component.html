@@ -1,4 +1,4 @@
-<div class="categories-list" *ngIf="newPage">
+<div id="categories-list-paged" class="categories-list" *ngIf="newPage">
   <a *ngFor="let category of categories" [href]="category.href" target="_blank" class="container">
     <div class="content" [style]="category.css">
       <div [ngClass]="labelClass">
@@ -7,7 +7,7 @@
     </div>
   </a>
 </div>
-<div class="categories-list" *ngIf="link">
+<div id="categories-list-linked" class="categories-list" *ngIf="link">
   <a *ngFor="let category of categories" [routerLink]="['/products', category.name[culture]]"
     [queryParams]="{id: category.id}" class="container">
     <div class="content" [style]="category.css">
