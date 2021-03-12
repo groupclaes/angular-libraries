@@ -1,0 +1,12 @@
+<a class="slides" [href]="slide.url" [ngClass]="slide.state" *ngFor="let slide of slides"
+  [style.background-image]="slide.css"></a>
+
+<div class="bottom-container" (window:resize)="onResize()">
+  <h2 [innerText]="title"></h2>
+  <div class="slide-selectors" *ngIf="slideCount > 1">
+    <div class="slide-selector" [ngClass]="{ selected: index === currentIndex }"
+      *ngFor="let slide of slides; let index = index" (click)="selectIndex(index)">
+      <i class="far fa-fw fa-circle fa-sm"></i>
+    </div>
+  </div>
+</div>
