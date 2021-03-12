@@ -66,6 +66,7 @@ export class PcmWebcontentBannerComponent implements OnInit {
           this.slides.push({
             state: 'background',
             title: banner.meta.title[this.culture],
+            description: banner.meta.description[this.culture],
             href: banner.meta.href[this.culture],
             css: this.sanitizer.bypassSecurityTrustStyle(`background-image:url('${document.url}');`),
             duration: banner.meta.duration
@@ -131,20 +132,11 @@ export class PcmWebcontentBannerComponent implements OnInit {
     this.startRotation()
   }
 
-
-
-  get title(): string {
+  get description(): string {
     if (this.slides && this.slides.length > 0) {
-      return this.slides[this.currentIndex].title
+      return this.slides[this.currentIndex].description
     }
     return ''
-  }
-
-  get url(): string {
-    if (this.slides && this.slides.length > 0) {
-      return this.slides[this.currentIndex].href
-    }
-    return '#'
   }
 
   get slideCount(): number {

@@ -1,7 +1,8 @@
-<a class="slides" [href]="slide.href" [ngClass]="slide.state" *ngFor="let slide of slides" [style]="slide.css"></a>
+<a class="slides" [title]="slide.title" [href]="slide.href" [ngClass]="slide.state" *ngFor="let slide of slides"
+  [style]="slide.css"></a>
 
 <div class="bottom-container" (window:resize)="onResize()">
-  <h2 [innerText]="title"></h2>
+  <h2 [innerText]="description"></h2>
   <div class="slide-selectors" *ngIf="slideCount > 1">
     <div class="slide-selector" [ngClass]="{ selected: index === currentIndex }"
       *ngFor="let slide of slides; let index = index" (click)="selectIndex(index)">
