@@ -111,6 +111,12 @@ export class PcmWebcontentBannerComponent implements OnInit {
     // build slides array
     this.buildArray()
 
+    if (this.slideCount > 1) {
+      this.startRotation(true)
+    } else {
+      this.slides[0].state = 'fade-in'
+    }
+
     this.ref.markForCheck()
   }
 
