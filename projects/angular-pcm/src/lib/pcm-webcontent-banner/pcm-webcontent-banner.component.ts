@@ -30,7 +30,7 @@ export class PcmWebcontentBannerComponent implements OnInit {
       if (resp.count > 0) {
         // build slides array
         this.resp = resp
-        this.buildArray()
+        this.onResize()
         console.log(this.slides)
 
         this.slides.forEach(slide => {
@@ -39,6 +39,8 @@ export class PcmWebcontentBannerComponent implements OnInit {
         this.currentIndex = 0;
         if (this.slideCount > 1) {
           this.startRotation(true)
+        } else {
+          this.slides[0].state = 'fade-in'
         }
       }
 
@@ -65,7 +67,7 @@ export class PcmWebcontentBannerComponent implements OnInit {
             state: 'background',
             title: banner.meta.title[this.culture],
             href: banner.meta.href[this.culture],
-            url: this.sanitizer.bypassSecurityTrustStyle(`url(${document.url});`),
+            css: this.sanitizer.bypassSecurityTrustStyle(`background-image:url('${document.url}');`),
             duration: banner.meta.duration
           })
         }
