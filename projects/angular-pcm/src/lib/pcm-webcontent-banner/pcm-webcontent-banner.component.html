@@ -1,5 +1,5 @@
-<a class="slides" [href]="slide.url" [ngClass]="slide.state" *ngFor="let slide of slides"
-  [style.background-image]="slide.css"></a>
+<a class="slides" [href]="slide.href" [ngClass]="slide.state" *ngFor="let slide of slides"
+  [style.background-image]="slide.url"></a>
 
 <div class="bottom-container" (window:resize)="onResize()">
   <h2 [innerText]="title"></h2>
