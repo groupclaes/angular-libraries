@@ -1,11 +1,12 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { IGetWebContentBannerResponse, PcmApiService } from '../pcm-api.service';
 
 @Component({
   selector: 'pcm-webcontent-banner',
   templateUrl: './pcm-webcontent-banner.component.html',
-  styleUrls: ['./pcm-webcontent-banner.component.scss']
+  styleUrls: ['./pcm-webcontent-banner.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PcmWebcontentBannerComponent implements OnInit {
   @Input() company: string = 'gro'
@@ -31,14 +32,13 @@ export class PcmWebcontentBannerComponent implements OnInit {
         // build slides array
         this.resp = resp
         this.onResize()
-        console.log(this.slides)
 
         this.slides.forEach(slide => {
           slide.state = 'background'
         })
         this.currentIndex = 0;
         if (this.slideCount > 1) {
-          this.startRotation(true)
+          this.startRotation()
         } else {
           this.slides[0].state = 'fade-in'
         }
@@ -46,6 +46,15 @@ export class PcmWebcontentBannerComponent implements OnInit {
 
       this.ref.markForCheck()
     })
+
+
+
+
+    // if (this.slideCount > 1) {
+    //   this.startRotation()
+    // } else {
+    //   this.slides[0].state = 'fade-in'
+    // }
   }
 
   ngOnDestroy() {
@@ -59,24 +68,26 @@ export class PcmWebcontentBannerComponent implements OnInit {
     if (this.resp) {
       for (const bannerEntry in this.resp.banners) {
         const banner = this.resp.banners[bannerEntry]
-        console.log(bannerEntry, banner)
         // find current document for selection
         const document = banner.documents.find(e => e.languages.indexOf(this.culture) > -1 && e.size === this.currentSize)
         if (document != null) {
-          this.slides.push({
-            state: 'background',
-            title: banner.meta.title[this.culture],
-            description: banner.meta.description[this.culture],
-            href: banner.meta.href[this.culture],
-            css: this.sanitizer.bypassSecurityTrustStyle(`background-image:url('${document.url}');`),
-            duration: banner.meta.duration
-          })
+          // check if required texts are available
+          if (banner.meta.title && banner.meta.description) {
+            this.slides.push({
+              state: (this.slides.length == this.currentIndex) ? 'fade-in' : 'background',
+              title: banner.meta.title[this.culture],
+              description: banner.meta.description[this.culture],
+              href: (banner.meta.href != null) ? banner.meta.href[this.culture] : '#',
+              css: this.sanitizer.bypassSecurityTrustStyle(`background-image:url('${document.url}');`),
+              duration: banner.meta.duration
+            })
+          }
         }
       }
     }
   }
 
-  startRotation(fixResize?: boolean) {
+  startRotation() {
     this.slides.forEach(slide => {
       slide.state = 'background'
     })
@@ -85,9 +96,6 @@ export class PcmWebcontentBannerComponent implements OnInit {
     const timeout = currentSlide.duration ?? 4500
     currentSlide.state = 'fade-in'
 
-    if (fixResize) {
-      this.onResize()
-    }
     this.ref.markForCheck()
 
     this.timeout = window.setTimeout(() => {
@@ -102,6 +110,8 @@ export class PcmWebcontentBannerComponent implements OnInit {
   }
 
   onResize() {
+    const current = this.currentSize;
+
     if (window.innerWidth < 760 && this.currentSize !== 'small') {
       this.currentSize = 'small'
     } else if (window.innerWidth >= 760 && window.innerWidth < 1140 && this.currentSize !== 'medium') {
@@ -109,16 +119,12 @@ export class PcmWebcontentBannerComponent implements OnInit {
     } else if (window.innerWidth >= 1140 && this.currentSize !== 'large') {
       this.currentSize = 'large'
     }
-    // build slides array
-    this.buildArray()
 
-    if (this.slideCount > 1) {
-      this.startRotation(true)
-    } else {
-      this.slides[0].state = 'fade-in'
+    if (current != this.currentSize) {
+      // build slides array
+      this.buildArray()
+      this.ref.markForCheck()
     }
-
-    this.ref.markForCheck()
   }
 
   selectIndex(index: number) {
