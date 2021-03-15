@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { IGetWebContentBannerResponse, PcmApiService } from '../pcm-api.service';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core'
+import { DomSanitizer } from '@angular/platform-browser'
+import { IGetWebContentBannerResponse, PcmApiService } from '../pcm-api.service'
 
 @Component({
   selector: 'pcm-webcontent-banner',
@@ -8,7 +8,7 @@ import { IGetWebContentBannerResponse, PcmApiService } from '../pcm-api.service'
   styleUrls: ['./pcm-webcontent-banner.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PcmWebcontentBannerComponent implements OnInit {
+export class PcmWebcontentBannerComponent implements OnInit, OnChanges {
   @Input() company: string = 'gro'
   @Input() culture: string = 'nl'
   @Input() page: string = 'homepage'
@@ -23,12 +23,15 @@ export class PcmWebcontentBannerComponent implements OnInit {
   constructor(
     private ref: ChangeDetectorRef,
     private sanitizer: DomSanitizer,
-    private api: PcmApiService
+    private api: PcmApiService,
+    private el: ElementRef
   ) { }
 
   ngOnInit(): void {
     this.api.getWebContentBanner(this.company, this.page).subscribe(resp => {
       if (resp.count > 0) {
+        const nativeElement: HTMLElement = this.el.nativeElement
+        nativeElement.style.display = 'block'
         // build slides array
         this.resp = resp
         this.onResize()
@@ -36,7 +39,7 @@ export class PcmWebcontentBannerComponent implements OnInit {
         this.slides.forEach(slide => {
           slide.state = 'background'
         })
-        this.currentIndex = 0;
+        this.currentIndex = 0
         if (this.slideCount > 1) {
           this.startRotation()
         } else {
@@ -45,16 +48,17 @@ export class PcmWebcontentBannerComponent implements OnInit {
       }
 
       this.ref.markForCheck()
+    }, err => {
+      // this will err 404 if no banners are avail
     })
+  }
 
-
-
-
-    // if (this.slideCount > 1) {
-    //   this.startRotation()
-    // } else {
-    //   this.slides[0].state = 'fade-in'
-    // }
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.resp && changes.culture.previousValue !== changes.culture.currentValue && this.culture) {
+      this.buildArray()
+      this.ref.markForCheck()
+    }
+    console.log(this.slides, this.resp, this.culture)
   }
 
   ngOnDestroy() {
@@ -77,7 +81,8 @@ export class PcmWebcontentBannerComponent implements OnInit {
               state: (this.slides.length == this.currentIndex) ? 'fade-in' : 'background',
               title: banner.meta.title[this.culture],
               description: banner.meta.description[this.culture],
-              href: (banner.meta.href != null) ? banner.meta.href[this.culture] : '#',
+              alt: banner.meta.altText[this.culture],
+              href: (banner.meta.href != null) ? banner.meta.href[this.culture] : null,
               css: this.sanitizer.bypassSecurityTrustStyle(`background-image:url('${document.url}');`),
               duration: banner.meta.duration
             })
@@ -110,7 +115,7 @@ export class PcmWebcontentBannerComponent implements OnInit {
   }
 
   onResize() {
-    const current = this.currentSize;
+    const current = this.currentSize
 
     if (window.innerWidth < 760 && this.currentSize !== 'small') {
       this.currentSize = 'small'
