@@ -11,6 +11,8 @@ import { api_url } from '../variables';
 export class PcmWebsiteLogoComponent implements OnInit {
   @Input() company: string = 'gro'
   @Input() id: string = '100'
+  @Input() height: string | undefined
+  @Input() width: string | undefined
 
   constructor(private ref: ChangeDetectorRef, private sanitizer: DomSanitizer) { }
 
