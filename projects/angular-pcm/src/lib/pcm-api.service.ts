@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { api_url } from './variables';
 
@@ -9,7 +9,7 @@ import { api_url } from './variables';
 export class PcmApiService {
 
   constructor(
-    @Inject(HttpClient) private http: HttpClient
+    private http: HttpClient
   ) { }
 
   getWebContentBanner(company: string, page: string): Observable<IGetWebContentBannerResponse> {

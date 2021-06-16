@@ -2,17 +2,17 @@
   <a *ngFor="let category of categories" [href]="category.href" target="_blank" class="container">
     <div class="content" [style]="category.css">
       <div [ngClass]="labelClass">
-        <h4 [innerText]="category.name[culture]"></h4>
+        <h4 [innerText]="category.name[culture].toLowerCase()"></h4>
       </div>
     </div>
   </a>
 </div>
 <div id="categories-list-linked" class="categories-list" *ngIf="link">
-  <a *ngFor="let category of categories" [routerLink]="['/products', category.name[culture]]"
+  <a *ngFor="let category of categories" [routerLink]="['/products', category.name[culture].toLowerCase()]"
     [queryParams]="{id: category.id}" class="container">
     <div class="content" [style]="category.css">
       <div [ngClass]="labelClass">
-        <h4 [innerText]="category.name[culture]"></h4>
+        <h4 [innerText]="category.name[culture].toLowerCase()"></h4>
       </div>
     </div>
   </a>
