@@ -58,7 +58,6 @@ export class PcmWebcontentBannerComponent implements OnInit, OnChanges {
       this.buildArray()
       this.ref.markForCheck()
     }
-    console.log(this.slides, this.resp, this.culture)
   }
 
   ngOnDestroy() {

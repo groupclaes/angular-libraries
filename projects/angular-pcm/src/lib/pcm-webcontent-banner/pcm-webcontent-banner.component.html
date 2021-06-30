@@ -2,7 +2,7 @@
   [style]="slide.css"></a>
 
 <div class="bottom-container" (window:resize)="onResize()">
-  <h2 [innerText]="description"></h2>
+  <h2 [innerText]="description" *ngIf="description"></h2>
   <div class="slide-selectors" *ngIf="slideCount > 1">
     <div class="slide-selector" [ngClass]="{ selected: index === currentIndex }"
       *ngFor="let slide of slides; let index = index" (click)="selectIndex(index)">
