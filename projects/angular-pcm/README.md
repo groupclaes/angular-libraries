@@ -24,6 +24,8 @@ Run `ng test angular-pcm` to execute the unit tests via [Karma](https://karma-ru
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## CHANGELOG
+ - 1.1.10
+   - Updated packages, fix lodash vuln
  - 1.1.9
    - Added rel="noopener noreferer" target="_blank"
  - 1.1.8
