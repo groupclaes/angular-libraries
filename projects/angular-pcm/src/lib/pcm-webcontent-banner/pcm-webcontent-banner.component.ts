@@ -13,7 +13,7 @@ export class PcmWebcontentBannerComponent implements OnInit, OnChanges {
   @Input() culture: string = 'nl'
   @Input() page: string = 'homepage'
 
-  private currentSize: string = 'small'
+  private currentSize: string = 'none'
   currentIndex: number = 0
   timeout: number = 3000
 
