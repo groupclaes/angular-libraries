@@ -1,5 +1,5 @@
-<a class="slides" [title]="slide.title" [attr.href]="slide.href" [ngClass]="slide.state" *ngFor="let slide of slides"
-  [style]="slide.css"></a>
+<a class="slides" [title]="slide.title" rel="noopener noreferer" target="_blank" [attr.href]="slide.href"
+  [ngClass]="slide.state" *ngFor="let slide of slides" [style]="slide.css"></a>
 
 <div class="bottom-container" (window:resize)="onResize()">
   <h2 [innerText]="description" *ngIf="description"></h2>

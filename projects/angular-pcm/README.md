@@ -24,6 +24,12 @@ Run `ng test angular-pcm` to execute the unit tests via [Karma](https://karma-ru
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## CHANGELOG
+ - 1.1.9
+   - Added rel="noopener noreferer" target="_blank"
+ - 1.1.8
+   - Fix banners not initailiy loading on mobile due to default size = small and code does not update while size is unchanged
+ - 1.1.7 - 1.0.3
+   - no one knows
  - 1.0.2
    - Changed PCM url
    - Changed PcmArtikelFoto to miniature Controller
