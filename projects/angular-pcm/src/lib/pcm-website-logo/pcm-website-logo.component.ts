@@ -11,6 +11,7 @@ import { api_url } from '../variables';
 export class PcmWebsiteLogoComponent implements OnInit {
   @Input() company: string = 'gro'
   @Input() id: string = '100'
+  @Input() darkId: string = '101'
   @Input() height: string | undefined
   @Input() width: string | undefined
 
@@ -24,5 +25,8 @@ export class PcmWebsiteLogoComponent implements OnInit {
 
   get url(): SafeUrl {
     return this.sanitizer.bypassSecurityTrustUrl(`${api_url}/content/${this.company}/website/logo/${this.id}`)
+  }
+  get darkUrl(): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(`${api_url}/content/${this.company}/website/logo/${this.darkId}`)
   }
 }

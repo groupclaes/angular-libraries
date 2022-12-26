@@ -9,3 +9,20 @@
     margin: inherit;
   }
 }
+
+@media (prefers-color-scheme: dark) {
+  .dark-theme {
+    display: block
+  }
+  .light-theme {
+    display: none
+  }
+}
+@media (prefers-color-scheme: light) {
+  .dark-theme {
+    display: none
+  }
+  .light-theme {
+    display: block
+  }
+}

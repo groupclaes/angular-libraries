@@ -1,1 +1,4 @@
-<img *ngIf="company" [src]="url" [alt]="company + ' Logo'" [width]="width" [height]="height">
+<img *ngIf="company" [src]="url" [alt]="company + ' Logo'" 
+    class="light-theme"[width]="width" [height]="height">
+<img *ngIf="company" [src]="darkUrl" [alt]="company + ' Logo'"
+    class="dark-theme" [width]="width" [height]="height">
