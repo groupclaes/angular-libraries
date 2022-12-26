@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit, SecurityContext } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { api_url } from '../variables';
 
 @Component({
@@ -23,10 +23,18 @@ export class PcmWebsiteLogoComponent implements OnInit {
     }
   }
 
-  get url(): SafeUrl {
-    return this.sanitizer.bypassSecurityTrustUrl(`${api_url}/content/${this.company}/website/logo/${this.id}`)
+  get url(): SafeUrl | null {
+    if (this.id != null && !isNaN(+this.id)) {
+      return this.sanitizer.sanitize(SecurityContext.URL, `${api_url}/content/${this.company}/website/logo/${this.id}`)
+    }
+
+    return null
   }
-  get darkUrl(): SafeUrl {
-    return this.sanitizer.bypassSecurityTrustUrl(`${api_url}/content/${this.company}/website/logo/${this.darkId}`)
+  darkUrl(): SafeUrl | null {
+    if (this.darkId != null && !isNaN(+this.darkId)) {
+      return this.sanitizer.sanitize(SecurityContext.URL, `${api_url}/content/${this.company}/website/logo/${this.darkId}`)
+    }
+
+    return null
   }
 }
