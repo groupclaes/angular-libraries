@@ -28,23 +28,10 @@
             "tsConfig": "projects/angular-pcm/tsconfig.spec.json",
             "karmaConfig": "projects/angular-pcm/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/angular-pcm/tsconfig.lib.json",
-              "projects/angular-pcm/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     }},
   "cli": {
     "analytics": "beb93c24-fe6d-41af-b440-63f4c61ca180"
-  },
-  "defaultProject": "angular-pcm"
+  }
 }
