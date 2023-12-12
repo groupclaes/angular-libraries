@@ -10,6 +10,6 @@
     "@angular/platform-browser": "^16.2.12"
   },
   "dependencies": {
-    "tslib": "^2.6.2"
+    "tslib": "^2.3.0"
   }
 }
