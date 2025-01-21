@@ -3,10 +3,11 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { api_url } from '../variables';
 
 @Component({
-  selector: 'pcm-artikel-foto',
-  templateUrl: './pcm-artikel-foto.component.html',
-  styleUrls: ['./pcm-artikel-foto.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'pcm-artikel-foto',
+    templateUrl: './pcm-artikel-foto.component.html',
+    styleUrls: ['./pcm-artikel-foto.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PcmArtikelFotoComponent implements OnInit {
   @Input() company: string = 'mac';

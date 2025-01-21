@@ -3,10 +3,11 @@ import { DomSanitizer } from '@angular/platform-browser'
 import { IGetWebContentBannerResponse, PcmApiService } from '../pcm-api.service'
 
 @Component({
-  selector: 'pcm-webcontent-banner',
-  templateUrl: './pcm-webcontent-banner.component.html',
-  styleUrls: ['./pcm-webcontent-banner.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'pcm-webcontent-banner',
+    templateUrl: './pcm-webcontent-banner.component.html',
+    styleUrls: ['./pcm-webcontent-banner.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PcmWebcontentBannerComponent implements OnInit, OnChanges {
   @Input() company: string = 'gro'

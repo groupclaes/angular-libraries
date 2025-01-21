@@ -3,10 +3,11 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
 import { api_url } from '../variables';
 
 @Component({
-  selector: 'pcm-website-logo',
-  templateUrl: './pcm-website-logo.component.html',
-  styleUrls: ['./pcm-website-logo.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'pcm-website-logo',
+    templateUrl: './pcm-website-logo.component.html',
+    styleUrls: ['./pcm-website-logo.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PcmWebsiteLogoComponent implements OnInit {
   @Input() company: string = 'gro'

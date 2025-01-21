@@ -3,10 +3,11 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 import { api_url } from '../variables';
 
 @Component({
-  selector: 'pcm-website-banner',
-  templateUrl: './pcm-website-banner.component.html',
-  styleUrls: ['./pcm-website-banner.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'pcm-website-banner',
+    templateUrl: './pcm-website-banner.component.html',
+    styleUrls: ['./pcm-website-banner.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: false
 })
 export class PcmWebsiteBannerComponent implements OnInit, OnChanges {
   @Input() company: string = 'gro';
