@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { PcmApiService } from '../pcm-api.service';
@@ -11,16 +11,13 @@ describe('PcmWebcontentBannerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PcmWebcontentBannerComponent],
-      imports: [
-        RouterTestingModule,
-        HttpClientModule
-        // PlatformBrowserDynamicModuleTesting
-      ],
-      providers: [
-        PcmApiService
-      ]
-    })
+    declarations: [PcmWebcontentBannerComponent],
+    imports: [RouterTestingModule],
+    providers: [
+        PcmApiService,
+        provideHttpClient(withInterceptorsFromDi())
+    ]
+})
       .compileComponents();
   });
 
