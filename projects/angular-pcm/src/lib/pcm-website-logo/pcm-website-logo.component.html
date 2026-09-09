@@ -1,4 +1,8 @@
-<picture *ngIf="company">
-  <source *ngIf="darkId" [srcset]="darkUrl()" media="(prefers-color-scheme: dark)">
-  <img [src]="url" [alt]="company + ' Logo'" [width]="width" [height]="height">
-</picture>
+@if (company) {
+  <picture>
+    @if (darkId) {
+      <source [srcset]="darkUrl()" media="(prefers-color-scheme: dark)">
+    }
+    <img [src]="url" [alt]="company + ' Logo'" [width]="width" [height]="height">
+  </picture>
+}

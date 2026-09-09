@@ -1,1 +1,3 @@
-<div (window:resize)="onResize()" *ngIf="css" [style]="css"></div>
+@if (css) {
+  <div (window:resize)="onResize()" [style]="css"></div>
+}

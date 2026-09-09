@@ -1,12 +1,20 @@
-<a class="slides" [title]="slide.title" rel="noopener noreferer" target="_blank" [attr.href]="slide.href"
-  [ngClass]="slide.state" *ngFor="let slide of slides" [style]="slide.css"></a>
+@for (slide of slides; track slide) {
+  <a class="slides" [title]="slide.title" rel="noopener noreferer" target="_blank" [attr.href]="slide.href"
+  [ngClass]="slide.state" [style]="slide.css"></a>
+}
 
 <div class="bottom-container" (window:resize)="onResize()">
-  <h2 [innerText]="description" *ngIf="description"></h2>
-  <div class="slide-selectors" *ngIf="slideCount > 1">
-    <div class="slide-selector" [ngClass]="{ selected: index === currentIndex }"
-      *ngFor="let slide of slides; let index = index" (click)="selectIndex(index)">
-      <i class="far fa-fw fa-circle fa-sm"></i>
+  @if (description) {
+    <h2 [innerText]="description"></h2>
+  }
+  @if (slideCount > 1) {
+    <div class="slide-selectors">
+      @for (slide of slides; track slide; let index = $index) {
+        <div class="slide-selector" [ngClass]="{ selected: index === currentIndex }"
+          (click)="selectIndex(index)">
+          <i class="far fa-fw fa-circle fa-sm"></i>
+        </div>
+      }
     </div>
-  </div>
+  }
 </div>
