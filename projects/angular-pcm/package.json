@@ -1,13 +1,13 @@
 {
   "name": "@groupclaes/angular-pcm",
-  "version": "1.19.1",
+  "version": "1.21.2",
   "author": "Group Claes",
   "private": false,
   "peerDependencies": {
-    "@angular/common": "^19.1.2",
-    "@angular/core": "^19.1.2",
-    "@angular/router": "^19.1.2",
-    "@angular/platform-browser": "^19.1.2"
+    "@angular/common": "^21.2.22",
+    "@angular/core": "^21.2.22",
+    "@angular/router": "^21.2.22",
+    "@angular/platform-browser": "^21.2.22"
   },
   "dependencies": {
     "tslib": "^2.6.2"
